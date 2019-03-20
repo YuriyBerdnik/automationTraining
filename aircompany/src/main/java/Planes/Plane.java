@@ -8,15 +8,11 @@ abstract public class Plane {
     private int maxFlightDistance;
     private int maxLoadCapacity;
 
-    public Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
+    Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
         this.model = model;
         this.maxSpeed = maxSpeed;
         this.maxFlightDistance = maxFlightDistance;
         this.maxLoadCapacity = maxLoadCapacity;
-    }
-
-    public String getModel() {
-        return model;
     }
 
     public int getMaxSpeed() {
@@ -28,8 +24,7 @@ abstract public class Plane {
     }
 
     public int getMaxLoadCapacity() {
-        int result = this.maxLoadCapacity;
-        return result;
+        return this.maxLoadCapacity;
     }
 
     @Override

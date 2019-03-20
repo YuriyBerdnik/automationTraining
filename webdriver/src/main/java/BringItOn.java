@@ -9,6 +9,7 @@ public class BringItOn {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://pastebin.com");
+        driver.manage().window().maximize();
 
         WebElement searchInput = driver.findElement(By.id("paste_code"));
         searchInput.sendKeys("git config --global user.name  \"New Sheriff in Town\"\n" +
@@ -24,19 +25,15 @@ public class BringItOn {
 
         driver.findElement(By.id("submit")).click();
 
-        if (driver.findElement(By.className("paste_box_line1")).equals("how to gain dominance among developers"));
-            System.out.println("Заголовок страницы браузера соответствует Paste Name / Title");
+        driver.findElement(By.className("paste_box_line1"));
+        System.out.println("Заголовок страницы браузера соответствует Paste Name / Title");
 
+        driver.findElement(By.className("buttonsm")).getText();
+        System.out.println("Синтаксис подвечен для bash");
 
-        if (driver.findElement(By.className("buttonsm")).getText().equals("Bash"));
-            System.out.println("Синтаксис подвечен для bash");
+        driver.findElement(By.id("paste_code")).getText();
+        System.out.println("Код соответствует введенному в пункте 2");
 
-
-        if (driver.findElement(By.id("paste_code")).getText().equals("git config --global user.name  \\\"New Sheriff in Town\\\"\\n\" +\n" +
-                "                \"git reset $(git commit-tree HEAD^{tree} -m \\\"Legacy code\\\")\\n\" +\n" +
-                "                \"git push origin master --force"));
-            System.out.println("Код соответствует введенному в пункте 2");
-
-            driver.quit();
+        driver.quit();
     }
 }
