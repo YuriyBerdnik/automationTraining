@@ -36,7 +36,7 @@ public class MailPage extends AbstractPage {
     }
 
     public MailPage openNewMessage() {
-        new WebDriverWait(driver, 40)
+        new WebDriverWait(driver, 100)
                 .until(ExpectedConditions.presenceOfElementLocated(newMessageGot))
                 .click();
         return new MailPage(driver);
