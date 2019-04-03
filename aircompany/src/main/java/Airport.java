@@ -18,13 +18,16 @@ import java.util.function.ToIntFunction;
 // version: 1.3
 // refactoring by Yury Berdnik
 // 20-Mar-2019
+// -------------------------------
+// version: 1.4
+// refactoring by Yury Berdnik
+// 03-April-2019
 
 public class Airport {
     private List<? extends Plane> planes;
 
 
     List<PassengerPlane> getPassengerPlane() {
-        List<? extends Plane> planes = this.planes;
         List<PassengerPlane> passengerPlanes = new ArrayList<>();
         for (Plane plane : planes) {
             if (plane instanceof PassengerPlane) {
@@ -108,7 +111,7 @@ public class Airport {
     @Override
     public String toString() {
         return "Airport{" +
-                "Planes=" + planes.toString() +
+                "Planes=" + planes +
                 '}';
     }
 

@@ -19,15 +19,15 @@ public class MilitaryPlane extends Plane {
 
     @Override
     public String toString() {
-        return super.toString().replace("}",
-                ", type=" + militaryType +
-                        '}');
+        return "MilitaryPlane{" +
+                "militaryType=" + militaryType +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MilitaryPlane)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         MilitaryPlane that = (MilitaryPlane) o;
         return militaryType == that.militaryType;

@@ -3,7 +3,7 @@ package Planes;
 import java.util.Objects;
 
 abstract public class Plane {
-    String model;
+    private String model;
     private int maxSpeed;
     private int maxFlightDistance;
     private int maxLoadCapacity;
@@ -24,7 +24,7 @@ abstract public class Plane {
     }
 
     public int getMaxLoadCapacity() {
-        return this.maxLoadCapacity;
+        return maxLoadCapacity;
     }
 
     @Override
@@ -40,7 +40,7 @@ abstract public class Plane {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Plane)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Plane plane = (Plane) o;
         return maxSpeed == plane.maxSpeed &&
                 maxFlightDistance == plane.maxFlightDistance &&
