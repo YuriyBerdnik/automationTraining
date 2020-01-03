@@ -15,16 +15,36 @@ abstract public class Plane {
         this.maxLoadCapacity = maxLoadCapacity;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public int getMaxSpeed() {
         return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 
     public int getMaxFlightDistance() {
         return maxFlightDistance;
     }
 
+    public void setMaxFlightDistance(int maxFlightDistance) {
+        this.maxFlightDistance = maxFlightDistance;
+    }
+
     public int getMaxLoadCapacity() {
         return maxLoadCapacity;
+    }
+
+    public void setMaxLoadCapacity(int maxLoadCapacity) {
+        this.maxLoadCapacity = maxLoadCapacity;
     }
 
     @Override
@@ -40,7 +60,7 @@ abstract public class Plane {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Plane)) return false;
         Plane plane = (Plane) o;
         return maxSpeed == plane.maxSpeed &&
                 maxFlightDistance == plane.maxFlightDistance &&

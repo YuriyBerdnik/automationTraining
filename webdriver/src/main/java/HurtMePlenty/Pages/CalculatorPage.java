@@ -1,12 +1,12 @@
-package Hardcore.pages;
+package HurtMePlenty.Pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class CalculatorPage extends AbstractPage {
 
@@ -82,9 +82,6 @@ public class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//button[@aria-label='Add to Estimate']")
     private WebElement buttonAddToEstimate;
 
-    @FindBy(id = "email_quote")
-    private WebElement buttonEmailEstimate;
-
 
     //        Result Block
     @FindBy(xpath = "//*[@id='compute']/md-list/md-list-item[2]")
@@ -105,15 +102,6 @@ public class CalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='resultBlock']//*[contains(text(),'Total Estimated Cost')]")
     private WebElement resultCost;
 
-
-    // Send Email
-    @FindBy(xpath = "//form[@name='emailForm']//input[@type='email']")
-    private WebElement emailForSend;
-
-    @FindBy(xpath = "//button[@aria-label='Send Email']")
-    private WebElement buttonSendEmail;
-
-
     public void fillInTheForm(String numberOfInstance, String instanseFof) {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_SECONDS).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameComputeEngine));
         activateComputeEngine.click();
@@ -129,24 +117,16 @@ public class CalculatorPage extends AbstractPage {
         dropdownFillInTheForm(dropdownDatacenterLocation, selectDatacenterLocation);
         dropdownFillInTheForm(dropdownCommitedUsage, selectCommitedUsage);
         buttonAddToEstimate.click();
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_SECONDS).until(ExpectedConditions.elementToBeClickable(buttonEmailEstimate));
-        buttonEmailEstimate.click();
     }
 
-    public void fillInTheFormForSendEmail(String email) {
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_SECONDS).until(ExpectedConditions.visibilityOf(emailForSend));
-        emailForSend.sendKeys(email);
-        buttonSendEmail.click();
+    public void checkDataConsistency() {
+        Assert.assertTrue(resultMachineClass.getText().contains("VM class: regular"));
+        Assert.assertTrue(resultMachineType.getText().contains("Instance type: n1-standard-8"));
+        Assert.assertTrue(resultDatacenterLocation.getText().contains("Region: Frankfurt"));
+        Assert.assertTrue(resultLocalSSD.getText().contains("Total available local SSD space 2x375 GB"));
+        Assert.assertTrue(resultCommitedUsage.getText().contains("Commitment term: 1 Year"));
+        Assert.assertTrue(resultCost.getText().contains("Total Estimated Cost: USD 1,187.77 per 1 month"));
     }
-
-//    public void checkDataConsistency() {
-//        Assert.assertTrue(resultMachineClass.getText().contains("VM class: regular"));
-//        Assert.assertTrue(resultMachineType.getText().contains("Instance type: n1-standard-8"));
-//        Assert.assertTrue(resultDatacenterLocation.getText().contains("Region: Frankfurt"));
-//        Assert.assertTrue(resultLocalSSD.getText().contains("Total available local SSD space 2x375 GB"));
-//        Assert.assertTrue(resultCommitedUsage.getText().contains("Commitment term: 1 Year"));
-//        Assert.assertTrue(resultCost.getText().contains("Total Estimated Cost: USD 1,187.77 per 1 month"));
-//    }
 
     private void dropdownFillInTheForm(WebElement dropdown, WebElement choose) {
         dropdown.click();

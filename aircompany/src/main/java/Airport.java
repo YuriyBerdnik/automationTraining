@@ -13,15 +13,8 @@ import java.util.function.ToIntFunction;
 // -------------------------------
 // version: 1.2
 // refactoring by Yury Berdnik
-// 24-Feb-2019
-// -------------------------------
-// version: 1.3
-// refactoring by Yury Berdnik
-// 20-Mar-2019
-// -------------------------------
-// version: 1.4
-// refactoring by Yury Berdnik
-// 03-April-2019
+// 03-Jan-2020
+
 
 public class Airport {
     private List<? extends Plane> planes;
@@ -111,7 +104,7 @@ public class Airport {
     @Override
     public String toString() {
         return "Airport{" +
-                "Planes=" + planes +
+                "Planes=" + planes.toString() +
                 '}';
     }
 

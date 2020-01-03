@@ -1,5 +1,6 @@
+package HurtMePlenty;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,27 +10,25 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
-public class Hardcore {
+public class oldHurtMePlenty {
     private WebDriver driver;
 
-    public Hardcore() {
+    public oldHurtMePlenty() {
         driver = new ChromeDriver();
     }
 
     @BeforeTest
-    public void testHardcore() {
+    public void testHurtMePlenty() {
         driver.get("https://cloud.google.com/");
         driver.manage().window().maximize();
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='exploreProducts']")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='exploreProducts']")));
         driver.findElement(By.xpath("//*[@track-name='exploreProducts']")).click();
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='seePricing']")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='seePricing']")));
         driver.findElement(By.xpath("//*[@track-name='seePricing']")).click();
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='pricingNav/calculators']")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@track-name='pricingNav/calculators']")));
         driver.findElement(By.xpath("//*[@track-name='pricingNav/calculators']")).click();
 
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("idIframe")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("idIframe")));
         driver.findElement(By.xpath("//md-tab-item/*[@title='Compute Engine']")).click();
 
         driver.findElement(By.id("input_46")).sendKeys("4");
@@ -53,34 +52,34 @@ public class Hardcore {
         driver.findElement(By.id("select_option_100")).click();
 
         driver.findElement(By.xpath("//*[@id='mainForm']//button[text()='Add to Estimate']")).click();
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.presenceOfElementLocated(By.id("compute")));
-
-        driver.findElement(By.id("email_quote")).click();
-
-        ((JavascriptExecutor) driver).executeScript("window.open()");
-        ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tab.get(1));
-        driver.get("https://10minutemail.com");
-
-        String email = driver.findElement(By.id("mailAddress")).getAttribute("value");
-
-        driver.switchTo().window(tab.get(0));
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("idIframe")));
-        driver.findElement(By.xpath("//form[@name='emailForm']//input[@type='email']")).sendKeys(email);
-
-        driver.findElement(By.xpath("//form[@name='emailForm']//button[contains(text(),'Send Email')]")).click();
-
-        driver.switchTo().window(tab.get(1));
-
-        new WebDriverWait(driver, 1000).until(ExpectedConditions.visibilityOfElementLocated(By.id("messagesList")));
-        driver.findElement(By.id("messagesList")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("compute")));
     }
 
     @Test
-    public void testEqualsPrice() {
-        String emailPrice = driver.findElement(By.cssSelector("#mobilepadding > td > table > tbody > tr:nth-child(2) > td:nth-child(2) > h3")).getText();
-        String calcPrice = "USD 1,331.77";
-        Assert.assertEquals(emailPrice, calcPrice);
+    public void testVMClass() {
+        String vmClass = driver.findElement(By.id("select_value_label_41")).getText().toLowerCase();
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='resultBlock']//*[contains(text(),'" + vmClass + "')]")).isDisplayed());
+    }
+
+    @Test
+    public void testInstanceType() {
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='resultBlock']//*[contains(text(),'Instance type: n1-standard-8')]")).isDisplayed());
+    }
+
+    @Test
+    public void testRegion() {
+        String[] region = " ".split(driver.findElement(By.id("select_option_196")).getText());
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='resultBlock']//*[contains(text(),'" + region[0] + "')]")).isDisplayed());
+    }
+
+    @Test
+    public void testLocalSSD() {
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='resultBlock']//*[contains(text(),'Total available local SSD space 3x375 GB')]")).isDisplayed());
+    }
+
+    @Test
+    public void testCommitmentTerm() {
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id='resultBlock']//*[contains(text(),'Commitment term: 1 Year')]")).isDisplayed());
     }
 
     @AfterTest

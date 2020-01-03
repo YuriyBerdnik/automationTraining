@@ -17,17 +17,21 @@ public class MilitaryPlane extends Plane {
         return militaryType;
     }
 
+    public void setMilitaryType(MilitaryType militaryType) {
+        this.militaryType = militaryType;
+    }
+
     @Override
     public String toString() {
-        return "MilitaryPlane{" +
-                "militaryType=" + militaryType +
-                '}';
+        return super.toString().replace("}",
+                ", type=" + militaryType +
+                        '}');
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof MilitaryPlane)) return false;
         if (!super.equals(o)) return false;
         MilitaryPlane that = (MilitaryPlane) o;
         return militaryType == that.militaryType;

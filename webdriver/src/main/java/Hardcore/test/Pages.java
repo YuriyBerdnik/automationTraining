@@ -5,15 +5,15 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 
-class Tabs {
+public class Pages {
 
     private WebDriver driver;
 
-    Tabs(WebDriver driver) {
+    Pages(WebDriver driver) {
         this.driver = driver;
     }
 
-    ArrayList<String> openNewTab(String url) {
+    ArrayList<String> openNewPage(String url) {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));

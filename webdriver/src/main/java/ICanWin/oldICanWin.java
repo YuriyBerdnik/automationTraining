@@ -1,14 +1,18 @@
+package ICanWin;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ICanWin {
+public class oldICanWin {
 
     public static void main(String[] args) {
 
         WebDriver driver = new ChromeDriver();
+
         driver.get("https://pastebin.com");
+        driver.manage().window().maximize();
 
         WebElement searchInput = driver.findElement(By.id("paste_code"));
         searchInput.sendKeys("Hello from WebDriver");
